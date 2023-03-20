@@ -39,10 +39,6 @@ describe('updateTimes', () => {
     const action = { type: 'unknownActionType' };
     expect(updateTimes(initialState, action)).toEqual(initialState);
   });
-
-  import { render, screen, fireEvent } from '@testing-library/react';
-import BookingForm from './BookingForm';
-
 describe('BookingForm', () => {
   test('renders all form fields', () => {
     const reservationInitial = {
