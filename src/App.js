@@ -92,9 +92,10 @@ function App() {
     updateTime(selectedDate);
   }, [selectedDate])
 
+ 
 
   function updateTime(selectedDate) {
-    if (selectedDate === '2023-03-03') {
+    if (selectedDate === '2023-03-03'||'2023-04-04'||'2023-03-10' ) {
       return dispatch({ type: 'update_time' })
     } else {
       return dispatch({ type: 'initial' })
