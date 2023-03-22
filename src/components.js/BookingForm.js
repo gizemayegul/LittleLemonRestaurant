@@ -1,15 +1,12 @@
 
 import React from 'react';
-import ConfirmedBooking from './ConfirmedBooking';
-import { Link } from "react-router-dom";
-import { Formik, Form, Field, FormikProvider } from 'formik';
-import { useFormik, validateYupSchema, validationSchema } from "formik";
+import { Field, FormikProvider } from 'formik';
+import { useFormik } from "formik";
 import * as Yup from 'yup';
 
 import {
     Box,
     Button,
-    Checkbox,
     Flex,
     FormControl,
     FormLabel,
@@ -17,7 +14,15 @@ import {
     Input,
     VStack,
     Stack,
-    Select
+    Select,
+    CloseButton,
+    useDisclosure,
+    AlertDialog,
+    AlertDialogOverlay,
+    AlertDialogBody,
+    AlertDialogHeader,
+    AlertDialogFooter,
+    AlertDialogContent,
 } from "@chakra-ui/react";
 import { submitAPI } from './Temp';
 
@@ -25,6 +30,8 @@ import { submitAPI } from './Temp';
 
 
 const BookingForm = (props) => {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
     const formik = useFormik({
         initialValues: props.reservationInitial,
         validationSchema: Yup.object().shape(
@@ -43,17 +50,26 @@ const BookingForm = (props) => {
             alert(JSON.stringify(values, null, 2));
             console.log('selam', values);
             submitAPI(values);
+
         }
     });
 
+    const isValid = formik.isValid;
+    console.log('selam', isValid);
+
     return (
-        <FormikProvider value={formik}>
-            <Flex className='modal' >
+        <FormikProvider data-testid="booking" value={formik}>
+            <Flex className='modal' role="modal">
                 <Box className='modal-content'>
                     <form onSubmit={formik.handleSubmit}
                         onChange={props.changeHandler}
-
                     >
+                        <Stack direction='row' spacing={6}>
+                            <CloseButton
+                                onClick={props.handleModal}
+                                size='md' />
+                        </Stack>
+
                         <VStack spacing={4} align="flex-start">
                             <FormControl isInvalid={!!formik.errors.name && formik.touched.name}>
                                 <FormLabel htmlFor="name">First Name</FormLabel>
@@ -118,24 +134,26 @@ const BookingForm = (props) => {
                                 />
                                 <FormErrorMessage>{formik.errors.date}</FormErrorMessage>
                             </FormControl>
-                            <FormControl>
+                            <FormControl isInvalid={!!formik.errors.date && formik.touched.date}>
                                 <FormLabel htmlFor="guest">Guest</FormLabel>
                                 <Field
-                                    as={Input}
-                                    id="guest"
+                                    as={Select}
                                     name="guest"
                                     type="number"
                                     variant="filled"
-                                    placeholder='1'
-                                    min="1"
-                                    max="6"
-                                    id="guests"
+                                    id='guests'
                                     {...formik.getFieldProps('guest')}
-
-                                />
+                                >
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                </Field>
                                 <FormErrorMessage>{formik.errors.guest}</FormErrorMessage>
                             </FormControl>
-                            <FormControl>
+                            <FormControl isInvalid={!!formik.errors.time && formik.touched.time}>
                                 <FormLabel htmlFor="time">Time</FormLabel>
                                 <Field
                                     as={Select}
@@ -143,6 +161,7 @@ const BookingForm = (props) => {
                                     name="time"
                                     type="combobox"
                                     variant="filled"
+                                    placeholder="select"
                                     {...formik.getFieldProps('time')}
                                 >
                                     {props.state.map(time => (
@@ -154,11 +173,10 @@ const BookingForm = (props) => {
                                 </Field>
                                 <FormErrorMessage>{formik.errors.time}</FormErrorMessage>
                             </FormControl>
-                            <FormControl>
+                            <FormControl isInvalid={!!formik.errors.occasion && formik.touched.occasion}>
                                 <FormLabel htmlFor="occasion">Occasion</FormLabel>
                                 <Field
                                     as={Select}
-                                    id="occasion"
                                     name="occasion"
                                     type="combobox"
                                     variant="filled"
@@ -169,31 +187,47 @@ const BookingForm = (props) => {
                                 </Field>
                                 <FormErrorMessage>{formik.errors.occasion}</FormErrorMessage>
                             </FormControl>
-                            <Stack direction='row' spacing={4} align='center'>
-                                <Button
-                                    type="submit"
-                                    aria-label="On Click"
-                                    colorScheme='teal' 
-                                    variant='solid'                                    width="full">
-                                    <Link to="/confirmation" onClick={props.confirmHandler}>Submit </Link>
-                                    {(props.confirmModal && submitAPI()) && (
-                                        <ConfirmedBooking
-                                            confirmHandler={props.confirmHandler}
-                                            confirmModal={props.confirmModal}
-                                            setConfirmModal={props.setConfirmModal}
-                                            confirmButton={props.confirmButton}
-                                        >
-                                        </ConfirmedBooking>
-                                    )}
-                                </Button>
-                            </Stack>
+                            <Button
+                                type="submit"
+                                aria-label="On Click"
+                                colorScheme='yellow'
+                                variant='solid' width="full"
+                                onClick={onOpen}>
+                                Submit
+                            </Button>
+                            <AlertDialog
+                                isOpen={isOpen}
+                                onClose={onClose}
+                            >
+                                <AlertDialogOverlay>
+                                    <AlertDialogContent>
+                                        <CloseButton
+                                            onClick={onClose}>
+                                        </CloseButton>
+                                        <AlertDialogHeader fontSize='lg' fontWeight='bold'>
+                                            Reservation confirmation
+                                        </AlertDialogHeader>
 
+                                        <AlertDialogBody>
+                                            We will get back to you soon about the confirmation
+                                        </AlertDialogBody>
+
+                                        <AlertDialogFooter>
+                                            Thank you for your patience
+
+                                            Thanks for choosing us!
+                                            Little Lemon
+                                        </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                </AlertDialogOverlay>
+                            </AlertDialog>
                         </VStack>
                     </form>
                 </Box>
             </Flex>
-        </FormikProvider>
+        </FormikProvider >
     );
 }
 
 export default BookingForm;
+

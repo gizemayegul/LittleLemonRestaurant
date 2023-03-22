@@ -1,6 +1,5 @@
 
-import React, { Component }  from 'react';
-
+ 
 const Testimonals = () => {
     return (<>
         <div className="testimonals-container">
