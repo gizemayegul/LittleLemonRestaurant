@@ -4,7 +4,7 @@ const Testimonals = () => {
     return (<>
         <div className="testimonals-container">
             <div className="testimonals-cards">
-                <div className = "rating">
+                <div >
                     <p>
                         Rating
                     </p>
@@ -15,11 +15,11 @@ const Testimonals = () => {
                 </div>
 
                 <div>
-                    <p className = "rating">Text</p>
+                    <p className = "text">Text</p>
                 </div>
             </div>
             <div className="testimonals-cards">
-                <div className = "rating">
+                <div >
                     <p>
                         Rating
                     </p>
@@ -30,11 +30,11 @@ const Testimonals = () => {
                 </div>
 
                 <div>
-                    <p className = "rating">Text</p>
+                    <p className = "text">Text</p>
                 </div>
             </div>
             <div className="testimonals-cards">
-                <div className = "rating">
+                <div >
                     <p>
                         Rating
                     </p>
@@ -45,11 +45,11 @@ const Testimonals = () => {
                 </div>
 
                 <div>
-                    <p className = "rating">Text</p>
+                    <p className = "text">Text</p>
                 </div>
             </div>
             <div className="testimonals-cards">
-                <div className = "rating">
+                <div >
                     <p>
                         Rating
                     </p>
@@ -60,7 +60,7 @@ const Testimonals = () => {
                 </div>
 
                 <div>
-                    <p className = "rating">Text</p>
+                    <p className = "text">Text</p>
                 </div>
             </div>
             

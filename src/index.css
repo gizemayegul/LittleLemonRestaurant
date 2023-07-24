@@ -207,8 +207,7 @@ code {
   flex: 1;
   margin: 1rem;
   padding: 1rem;
-  height: 20vh;
-  width: 100%;
+ 
 }
 
 .testimonals-body {
@@ -218,9 +217,10 @@ code {
 }
 
 .testimonals-body img{
-  width: 8vw;
-  height: 5vh;
+  width: 3vw;
+  height: 2vh;
 }
+
 
 
 .about-container{
@@ -254,11 +254,7 @@ code {
   font-size: 1rem;
 }
 
-.about-image1{
-  top: 8rem; 
-  left: 5rem;
-  position: relative;
-}
+ 
 
 .footer-container{
   display:flex;
@@ -297,6 +293,7 @@ code {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
+  overflow-y: auto;
 }
 
 /* Modal Content Styling */
@@ -309,6 +306,7 @@ code {
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  
 }
 
 
@@ -412,7 +410,7 @@ code {
   }
 
   .about-2 img{
-    height: 30vh;
+    height: 20vh;
     width: 40vw;
     
   }
@@ -425,6 +423,11 @@ code {
   }
   .modal-content {
     width: 90%; /* Adjust the modal width for smaller screens */
+    
+  }
+
+  .testimonals-container p{
+    font-size: 0.5rem;
   }
 
 }
