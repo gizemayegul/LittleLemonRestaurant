@@ -1,13 +1,12 @@
- 
+ import Chef1 from './asset/CHEF.jpg';
+ import Chef2 from './asset/CHEFS.jpg'
  
 const About = () => {
     return (
-        <div className="about-container">
-            <div className="about-item">
+        <div className='about-container' id='about'> 
+            <div className="about-items">
                 <div className="about-description">
                     <h1>Little Lemon</h1>
-                </div>
-                <div>
                     <h2>Chicago</h2>
                 </div>
                 <div>
@@ -15,9 +14,10 @@ const About = () => {
 Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. </p>
                 </div>
             </div>
-            <div className="about-item1">
-                    <img className="about-image" src="CHEFS.jpg" alt="chefs"/>
-                    <img className="about-image1" src=" CHEF.jpg" alt="chef"/>
+            <div className="about-2">
+                    <img className="about-image1" src={Chef2} alt="chef"/>
+                    <img className="about-image" src={Chef1} alt="chefs"/>
+                    
                     
             </div>            
         </div>

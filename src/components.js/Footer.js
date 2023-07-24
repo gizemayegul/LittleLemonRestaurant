@@ -1,30 +1,24 @@
 
-import { Link } from "react-router-dom";
+import restaurant from './asset/restaurant.jpg'
  
 const Footer = () => {
     return (<>
         <div className="footer-container">
             <div className="footer-item">
-                <figure >
-                    <img src="restaurant.jpg" alt="restaurant"/>
-                </figure>
+                    <img src={restaurant} alt="restaurant"/>
             </div>
             <div className="footer-item">
-                <nav>
-
-                
                     <div>
                         <h3>Doormat Navigation</h3>
                     </div>
                     <div>
-                            <li><Link>Home</Link></li>
-                            <li><Link>About</Link></li>
-                            <li><Link >Menu</Link></li>
-                            <li><Link >Reservations</Link></li>
-                            <li><Link>Order Onlone</Link></li>
-                            <li><Link>Login</Link></li>
+                            <li>Home</li>
+                            <li>About</li>
+                            <li>Menu</li>
+                            <li>Reservations</li>
+                            <li>Order Onlone</li>
+                            <li>Login</li>
                     </div>
-                </nav>
             </div>
             <div className="footer-item">
                 <div>
@@ -38,11 +32,11 @@ const Footer = () => {
             </div>
             <div className="footer-item">
                 <div>
-                    <h3> Social Media Links</h3>
+                    <h3> Social Media as</h3>
                 </div>
                 <div>
-                    <li><Link>Instagram</Link></li>
-                    <li><Link>Facebook</Link></li>
+                    <li>Instagram</li>
+                    <li>Facebook</li>
                 </div>
             </div>
 

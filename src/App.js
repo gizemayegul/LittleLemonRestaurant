@@ -7,6 +7,7 @@ import Testimonals from './components.js/Testimonals';
 import { useState } from 'react';
 import { useReducer, useEffect } from 'react';
 import { fetchAPI, submitAPI } from './components.js/Temp';
+import HighlightsCards from './components.js/HighlightsCards';
 
 
 
@@ -24,7 +25,7 @@ function App() {
     time: '',
   }
   const [allValues, setAllValues] = useState(reservationInitial);
-
+  const fixDate = new Date();
   useEffect(() => {
     initializeTimes1(new Date())
   }, [new Date()]);
@@ -83,9 +84,11 @@ function App() {
     setShowModal(!showModal);
   }
 
+  
+
 
   return (<>
-    <div className='container'>
+    <div className='wrapper'>
       <div className='Nav'><Nav
         handleModal={handleModal}
         showModal={showModal}
@@ -96,11 +99,12 @@ function App() {
         reservationInitial={reservationInitial}
         changeHandler={changeHandler}
       /></div>
-      <div className='Hero'><Hero /></div>
-      <div className='Highlights'><Highlights /></div>
-      <div className='Testimonals'><Testimonals /></div>
-      <div className='About'> <About /></div>
-      <div className='Footer'><Footer /></div>
+      <Hero />
+      <Highlights />
+      <HighlightsCards/>
+      <Testimonals />
+      <About />
+      <Footer />
     </div>
   </>
   );

@@ -1,5 +1,5 @@
 
- 
+ import persona from './asset/persona.png'
 const Testimonals = () => {
     return (<>
         <div className="testimonals-container">
@@ -10,7 +10,7 @@ const Testimonals = () => {
                     </p>
                 </div>
                 <div className="testimonals-body">
-                    <img src="persona.png" alt="persona"/>
+                    <img src={persona} alt="persona"/>
                     <p>Name</p>
                 </div>
 
@@ -25,7 +25,7 @@ const Testimonals = () => {
                     </p>
                 </div>
                 <div className="testimonals-body">
-                    <img src="persona.png" alt="persona"/>
+                    <img src={persona} alt="persona"/>
                     <p>Name</p>
                 </div>
 
@@ -40,7 +40,7 @@ const Testimonals = () => {
                     </p>
                 </div>
                 <div className="testimonals-body">
-                    <img src="persona.png" alt="persona"/>
+                    <img src={persona} alt="persona"/>
                     <p>Name</p>
                 </div>
 
@@ -55,7 +55,7 @@ const Testimonals = () => {
                     </p>
                 </div>
                 <div className="testimonals-body">
-                    <img src="persona.png" alt="persona"/>
+                    <img src={persona} alt="persona"/>
                     <p>Name</p>
                 </div>
 
