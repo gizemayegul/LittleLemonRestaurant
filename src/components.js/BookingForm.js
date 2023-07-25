@@ -15,7 +15,6 @@ import {
     Select,
 
 } from "@chakra-ui/react";
-import { submitAPI } from './Temp';
 
 import {
     CloseButton,
@@ -46,12 +45,10 @@ const BookingForm = (props) => {
                 time: Yup.string().required('time is required')
             }
         ),
-        onSubmit: (e,values) => {
-            e.preventDefault();
-            alert(JSON.stringify(values, null, 2));
-            submitAPI(values);
-            formik.resetForm();
-        
+        onSubmit: ( values, { resetForm }) => {
+            resetForm({});
+            onOpen();
+
 
         }
     });
@@ -60,14 +57,14 @@ const BookingForm = (props) => {
 
     return (
         <FormikProvider
-        
-         data-testid="booking" value={formik}>
+
+            data-testid="booking" value={formik}>
             <Flex className='modal' role="modal">
                 <Box className='modal-content'>
-                    <h2  id='reservation'>Reservation</h2>
+                    <h2 id='reservation'>Reservation</h2>
                     <form onSubmit={formik.handleSubmit}
                         onChange={props.changeHandler}
-                       
+
                     >
                         <VStack spacing={4} align="flex-start">
                             <FormControl isInvalid={!!formik.errors.name && formik.touched.name}>
@@ -190,7 +187,6 @@ const BookingForm = (props) => {
 
                             <Button
                                 isDisabled={formik.touched && !formik.isValid}
-                                onClick={onOpen}
                                 type="submit"
                                 aria-label="On Click"
                                 colorScheme='yellow'

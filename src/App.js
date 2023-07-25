@@ -6,7 +6,7 @@ import Nav from './components.js/Nav';
 import Testimonals from './components.js/Testimonals';
 import { useState } from 'react';
 import { useReducer, useEffect } from 'react';
-import { fetchAPI, submitAPI } from './components.js/Temp';
+import { fetchAPI } from './components.js/Temp';
 import HighlightsCards from './components.js/HighlightsCards';
 import BookingForm from './components.js/BookingForm';
 import { ChakraProvider } from '@chakra-ui/react';
@@ -49,7 +49,7 @@ function App() {
 
   const [state, dispatch] = useReducer(reducer, initializeTimes1())
 
-  const changeHandler = e => {
+  const changeHandler = (e) => {
     e.preventDefault();
     setAllValues({ ...allValues, [e.target.name]: e.target.value })
     updateTime(selectedDate);
@@ -65,42 +65,18 @@ function App() {
 
 
   function updateTime(selectedDate) {
-    if (selectedDate === '2023-03-03') {
+    if (selectedDate === '2023-08-07') {
       return dispatch({ type: 'update_time' })
     } else {
       return dispatch({ type: 'initial' })
     }
   }
 
-  function submitForm(allValues) {
-    const formData = allValues;
-    const reservationInfo = submitAPI(formData)
-    return reservationInfo;
-  }
-
-
-  const [showModal, setShowModal] = useState(false);
-
-  const handleModal = e => {
-    e.preventDefault();
-    setShowModal(!showModal);
-  }
-
-
 
 
   return (<>
     <div className='wrapper'>
-      <div className='Nav'><Nav
-        handleModal={handleModal}
-        showModal={showModal}
-        setShowModal={setShowModal}
-        state={state}
-        updateTime={updateTime}
-        submitForm={submitForm}
-        reservationInitial={reservationInitial}
-        changeHandler={changeHandler}
-      /></div>
+      <Nav/>
       <Hero />
       <Highlights />
       <HighlightsCards />
@@ -109,10 +85,9 @@ function App() {
         <BookingForm
           changeHandler={changeHandler}
           state={state}
-          submitForm={submitForm}
           reservationInitial={reservationInitial}
           allValues={allValues}
-          handleModal={handleModal}                               >
+                                    >
         </BookingForm>
       </ChakraProvider>
       <About />
