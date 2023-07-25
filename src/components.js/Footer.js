@@ -9,7 +9,7 @@ const Footer = () => {
             </div>
             <div className="footer-item">
                     <div>
-                        <h3>Doormat Navigation</h3>
+                        <h4>Doormat Navigation</h4>
                     </div>
                     <div>
                             <li>Home</li>
@@ -22,7 +22,7 @@ const Footer = () => {
             </div>
             <div className="footer-item">
                 <div>
-                    <h3> Contact</h3>
+                    <h4> Contact</h4>
                 </div>
                 <div>
                     <li>Adres</li>
@@ -32,7 +32,7 @@ const Footer = () => {
             </div>
             <div className="footer-item">
                 <div>
-                    <h3> Social Media as</h3>
+                    <h4> Social Media as</h4>
                 </div>
                 <div>
                     <li>Instagram</li>
