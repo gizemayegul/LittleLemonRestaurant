@@ -8,6 +8,8 @@ import { useState } from 'react';
 import { useReducer, useEffect } from 'react';
 import { fetchAPI, submitAPI } from './components.js/Temp';
 import HighlightsCards from './components.js/HighlightsCards';
+import BookingForm from './components.js/BookingForm';
+import { ChakraProvider } from '@chakra-ui/react';
 
 
 
@@ -25,7 +27,6 @@ function App() {
     time: '',
   }
   const [allValues, setAllValues] = useState(reservationInitial);
-  const fixDate = new Date();
   useEffect(() => {
     initializeTimes1(new Date())
   }, [new Date()]);
@@ -54,13 +55,13 @@ function App() {
   }
 
   const selectedDate = allValues.date;
-  
+
 
   useEffect(() => {
     updateTime(selectedDate);
   }, [selectedDate])
 
- 
+
 
   function updateTime(selectedDate) {
     if (selectedDate === '2023-03-03') {
@@ -84,7 +85,7 @@ function App() {
     setShowModal(!showModal);
   }
 
-  
+
 
 
   return (<>
@@ -101,8 +102,18 @@ function App() {
       /></div>
       <Hero />
       <Highlights />
-      <HighlightsCards/>
+      <HighlightsCards />
       <Testimonals />
+      <ChakraProvider resetCSS={false} >
+        <BookingForm
+          changeHandler={changeHandler}
+          state={state}
+          submitForm={submitForm}
+          reservationInitial={reservationInitial}
+          allValues={allValues}
+          handleModal={handleModal}                               >
+        </BookingForm>
+      </ChakraProvider>
       <About />
       <Footer />
     </div>

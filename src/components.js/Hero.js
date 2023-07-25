@@ -7,7 +7,7 @@ const Hero = () => {
         <div className='hero-container' id="home">
             <div className='hero-texts'>
                 <h1>Little Lemon </h1>
-                <p>Chicago</p>
+                <h3>Chicago</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                 <button>Online Reservation</button>
             </div>

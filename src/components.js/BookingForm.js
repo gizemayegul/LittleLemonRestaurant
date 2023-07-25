@@ -3,7 +3,6 @@ import React from 'react';
 import { Field, FormikProvider } from 'formik';
 import { useFormik } from "formik";
 import * as Yup from 'yup';
-
 import {
     Box,
     Button,
@@ -13,8 +12,12 @@ import {
     FormErrorMessage,
     Input,
     VStack,
-    Stack,
     Select,
+
+} from "@chakra-ui/react";
+import { submitAPI } from './Temp';
+
+import {
     CloseButton,
     useDisclosure,
     AlertDialog,
@@ -24,13 +27,12 @@ import {
     AlertDialogFooter,
     AlertDialogContent,
 } from "@chakra-ui/react";
-import { submitAPI } from './Temp';
-
 
 
 
 const BookingForm = (props) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
+
 
     const formik = useFormik({
         initialValues: props.reservationInitial,
@@ -41,35 +43,29 @@ const BookingForm = (props) => {
                 email: Yup.string().email('Please enter a right form email address').required('Email is required'),
                 phone: Yup.number().min(10, 'at least 10 character ').required('Phone is required'),
                 date: Yup.date().required('Date is required'),
-                guest: Yup.number().oneOf(["1", "2", "3", "4", "5", "6"]).required('This is required'),
-                occasion: Yup.string().oneOf(["Birthday", "Anniversary"]).required('This is required'),
                 time: Yup.string().required('time is required')
             }
         ),
         onSubmit: (values) => {
             alert(JSON.stringify(values, null, 2));
-            console.log('selam', values);
             submitAPI(values);
 
         }
     });
 
-    const isValid = formik.isValid;
-    console.log('selam', isValid);
+
 
     return (
-        <FormikProvider data-testid="booking" value={formik}>
+        <FormikProvider
+        
+         data-testid="booking" value={formik}>
             <Flex className='modal' role="modal">
                 <Box className='modal-content'>
+                    <h2  id='reservation'>Reservation</h2>
                     <form onSubmit={formik.handleSubmit}
                         onChange={props.changeHandler}
+                       
                     >
-                        <Stack direction='row' spacing={6}>
-                            <CloseButton
-                                onClick={props.handleModal}
-                                size='md' />
-                        </Stack>
-
                         <VStack spacing={4} align="flex-start">
                             <FormControl isInvalid={!!formik.errors.name && formik.touched.name}>
                                 <FormLabel htmlFor="name">First Name</FormLabel>
@@ -81,6 +77,7 @@ const BookingForm = (props) => {
                                     type="text"
                                     variant="filled"
                                     {...formik.getFieldProps('name')}
+                                    validate={formik.validationSchema}
                                 />
                                 <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
                             </FormControl>
@@ -187,12 +184,15 @@ const BookingForm = (props) => {
                                 </Field>
                                 <FormErrorMessage>{formik.errors.occasion}</FormErrorMessage>
                             </FormControl>
+
                             <Button
+                                isDisabled={formik.touched && !formik.isValid}
+                                onClick={onOpen}
                                 type="submit"
                                 aria-label="On Click"
                                 colorScheme='yellow'
                                 variant='solid' width="full"
-                                onClick={onOpen}>
+                            >
                                 Submit
                             </Button>
                             <AlertDialog
@@ -221,6 +221,8 @@ const BookingForm = (props) => {
                                     </AlertDialogContent>
                                 </AlertDialogOverlay>
                             </AlertDialog>
+
+
                         </VStack>
                     </form>
                 </Box>
