@@ -46,9 +46,12 @@ const BookingForm = (props) => {
                 time: Yup.string().required('time is required')
             }
         ),
-        onSubmit: (values) => {
+        onSubmit: (e,values) => {
+            e.preventDefault();
             alert(JSON.stringify(values, null, 2));
             submitAPI(values);
+            formik.resetForm();
+        
 
         }
     });

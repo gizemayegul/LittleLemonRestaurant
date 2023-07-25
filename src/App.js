@@ -50,6 +50,7 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initializeTimes1())
 
   const changeHandler = e => {
+    e.preventDefault();
     setAllValues({ ...allValues, [e.target.name]: e.target.value })
     updateTime(selectedDate);
   }
